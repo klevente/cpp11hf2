@@ -115,10 +115,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="body.cpp" />
+    <ClCompile Include="list_item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="node.cpp" />
+    <ClCompile Include="paragraph.cpp" />
+    <ClCompile Include="unordered_list.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="body.h" />
+    <ClInclude Include="html.h" />
     <ClInclude Include="list_item.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="node_factory.h" />
