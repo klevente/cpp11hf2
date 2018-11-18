@@ -117,6 +117,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="body.h" />
+    <ClInclude Include="list_item.h" />
+    <ClInclude Include="node.h" />
+    <ClInclude Include="node_factory.h" />
+    <ClInclude Include="paragraph.h" />
+    <ClInclude Include="unordered_list.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
