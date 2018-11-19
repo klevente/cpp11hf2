@@ -10,11 +10,7 @@ node::node() noexcept {
 	increment_instances();
 }
 
-node::node(const std::string& id) : id{ id } {
-	if (id != "") {
-		// itt valahogy nem másik shared_ptr-t kellene csinálni hanem az eredetit lemásolni
-		nodes_by_id[id] = std::shared_ptr<node>{ this };
-	}
+node::node(const std::string& id) : id_{ id } {
 	increment_instances();
 }
 
@@ -38,8 +34,8 @@ bool node::is_everything_destructed() noexcept {
 
 
 node::~node() {
-	if (!id.empty()) {
-		nodes_by_id.erase(id);
+	if (!id_.empty()) {
+		nodes_by_id.erase(id_);
 	}
 	num_of_instances--;
 }
@@ -49,6 +45,16 @@ node_ptr node::find_by_id(const std::string & id) {
 		throw std::logic_error{ "There is no node with id: " + id };
 	}
 	return nodes_by_id[id];
+}
+
+void node::insert_node_ptr_to_map(node_ptr n) {
+	if (!n->id_.empty()) {
+		nodes_by_id[n->id_] = n;
+	}
+}
+
+std::string node::id() const {
+	return id_;
 }
 
 void node::increment_instances() noexcept {

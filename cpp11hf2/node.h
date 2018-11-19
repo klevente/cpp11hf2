@@ -29,6 +29,9 @@ public:
 	virtual ~node();
 
 	static node_ptr find_by_id(const std::string& id);
+	static void insert_node_ptr_to_map(node_ptr n);
+
+	std::string id() const;
 
 private:
 	std::vector<node_ptr> children;
@@ -39,7 +42,7 @@ private:
 
 	static void increment_instances() noexcept;
 
-	std::string id;
+	std::string id_;
 
 	static std::unordered_map<std::string, node_ptr> nodes_by_id;
 };
