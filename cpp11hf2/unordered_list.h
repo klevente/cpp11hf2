@@ -5,7 +5,8 @@
 
 class unordered_list : public node, public node_factory<unordered_list> {
 public:
-
+	unordered_list() noexcept = default;
+	unordered_list(const std::string& id);
 
 private:
 

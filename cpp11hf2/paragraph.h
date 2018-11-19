@@ -5,7 +5,8 @@
 
 class paragraph : public node, public node_factory<paragraph> {
 public:
-
+	paragraph() noexcept = default;
+	paragraph(const std::string& id);
 
 private:
 
