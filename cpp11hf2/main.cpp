@@ -15,7 +15,16 @@ int main() {
 
 		root->print();
 		std::cout << '\n';
+		node::find_by_id("my-ul")->print();
+		std::cout << '\n';
 
+	}
+
+	try {
+		node::find_by_id("my-ul")->print();
+	}
+	catch (std::exception& e) {
+		std::cout << e.what() << '\n';
 	}
 
 	std::cout << node::is_everything_destructed() << '\n';

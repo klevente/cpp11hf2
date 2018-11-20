@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 int node::num_of_instances = 0;
-std::unordered_map<std::string, node_ptr> node::nodes_by_id;
+std::unordered_map<std::string, node_w_ptr> node::nodes_by_id;
 
 node::node() noexcept {
 	increment_instances();
@@ -44,7 +44,7 @@ node_ptr node::find_by_id(const std::string & id) {
 	if (nodes_by_id.count(id) == 0) {
 		throw std::logic_error{ "There is no node with id: " + id };
 	}
-	return nodes_by_id[id];
+	return nodes_by_id[id].lock();
 }
 
 void node::insert_node_ptr_to_map(node_ptr n) {
@@ -57,7 +57,15 @@ std::string node::id() const {
 	return id_;
 }
 
+node_ptr node::parent_node() const {
+	return parent_node_.lock();
+}
+
 void node::increment_instances() noexcept {
 	num_of_instances++;
+}
+
+void node::set_parent_node(node_ptr parent) {
+	parent_node_ = parent;
 }
 

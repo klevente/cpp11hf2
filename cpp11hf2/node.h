@@ -8,6 +8,7 @@
 class node;
 
 using node_ptr = std::shared_ptr<node>;
+using node_w_ptr = std::weak_ptr<node>;
 
 class node {
 public:
@@ -33,16 +34,18 @@ public:
 
 	std::string id() const;
 
+	node_ptr parent_node() const;
+
 private:
 	std::vector<node_ptr> children;
-
 	virtual const char* tag_name() const noexcept = 0;
+	node_w_ptr parent_node_;
 
 	static int num_of_instances;
-
 	static void increment_instances() noexcept;
 
 	std::string id_;
+	static std::unordered_map<std::string, node_w_ptr> nodes_by_id;
 
-	static std::unordered_map<std::string, node_ptr> nodes_by_id;
+	void set_parent_node(node_ptr parent);
 };
