@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <algorithm>
 
 int node::num_of_instances = 0;
 std::unordered_map<std::string, node_w_ptr> node::nodes_by_id;
@@ -59,6 +60,20 @@ std::string node::id() const {
 
 node_ptr node::parent_node() const {
 	return parent_node_.lock();
+}
+
+node_ptr node::previous_sibling() const {
+	node_ptr parent;
+	if (parent = parent_node()) {
+		auto pos = std::find(parent->children.begin(), parent->children.end(), this);
+		if (pos == parent->children.begin()) {
+			return nullptr;
+		}
+		return *(pos-1);
+	}
+	else {
+		throw std::logic_error{ "cannot find parent!" };
+	}
 }
 
 void node::increment_instances() noexcept {

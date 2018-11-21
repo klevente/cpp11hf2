@@ -36,6 +36,9 @@ public:
 
 	node_ptr parent_node() const;
 
+	node_ptr previous_sibling() const;
+	node_ptr next_sibling() const;
+
 private:
 	std::vector<node_ptr> children;
 	virtual const char* tag_name() const noexcept = 0;
