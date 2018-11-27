@@ -17,6 +17,9 @@ node::node(const std::string& id) : id_{ id } {
 
 void node::append_child(node_ptr child) {
 	children.push_back(child);
+	// child->set_parent_node(node_ptr{ this });
+	child->parent_node_ = node_ptr{ this };
+	
 }
 
 void node::print() const {
@@ -65,8 +68,10 @@ node_ptr node::parent_node() const {
 node_ptr node::previous_sibling() const {
 	node_ptr parent;
 	if (parent = parent_node()) {
-		auto pos = std::find(parent->children.begin(), parent->children.end(), this);
-		if (pos == parent->children.begin()) {
+		auto pos = std::find_if(parent->children.begin(), parent->children.end(), [&parent](const auto& p) {
+			return p == parent;
+		});
+		if (pos - parent->children.begin() == 0) {
 			return nullptr;
 		}
 		return *(pos-1);
