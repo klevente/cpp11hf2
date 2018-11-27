@@ -18,8 +18,8 @@ int main() {
 		node::find_by_id("my-ul")->print();
 		std::cout << '\n';
 
-		auto s = ul->previous_sibling();
-		s->print();
+		auto sibling = ul->previous_sibling();
+		sibling->print();
 
 	}
 

@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include <list>
 
 class node;
 
@@ -31,6 +32,7 @@ public:
 
 	static node_ptr find_by_id(const std::string& id);
 	static void insert_node_ptr_to_map(node_ptr n);
+	static void insert_node_to_set(node_ptr n);
 
 	std::string id() const;
 
@@ -49,6 +51,7 @@ private:
 
 	std::string id_;
 	static std::unordered_map<std::string, node_w_ptr> nodes_by_id;
+	static std::list<node_w_ptr> all_nodes;
 
-	void set_parent_node(node_ptr parent);
+	void set_parent_node(node_w_ptr parent);
 };
