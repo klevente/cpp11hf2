@@ -93,7 +93,7 @@ node_ptr node::next_sibling() const {
 		auto pos = std::find_if(parent->children.begin(), parent->children.end(), [this](const auto& p) {
 			return p.get() == this;
 		});
-		if (pos == parent->children.end()) {
+		if (pos == parent->children.end()-1) {
 			return nullptr;
 		}
 		return *(pos + 1);
